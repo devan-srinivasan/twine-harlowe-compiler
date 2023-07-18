@@ -25,8 +25,6 @@ literal :  num | string | variable;
 
 variable : DS (ALPHA | DIGIT | UNDERSCORE)+ ;
 
-// link: LBRACK LBRACK (text  '->')?  text RBRACK RBRACK;
-
 num : floating | integer ;
 
 floating : MINUS? DIGIT* DOT DIGIT+ ;

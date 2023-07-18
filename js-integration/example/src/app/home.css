@@ -1,0 +1,79 @@
+.container {
+    width: 70%;
+    margin: 50px auto;
+    display: flex;
+    gap: 40px;
+}
+
+.output div {
+    border: 1px rgba(0, 0, 0, 0.63) solid;
+    width: 100%;
+    min-height: 100px;
+    white-space: pre-line;
+    padding: 10px 15px;
+}
+
+.output, .error {
+    margin-top: 40px;
+}
+
+.error {
+    color: rgba(255, 0, 0, 0.3);
+}
+
+.error p {
+    border: 0.5px rgba(255, 0, 0, 0.3) solid;
+    width: 100%;
+    min-height: 75px;
+}
+
+.passage {
+    display: flex;
+    flex-direction: column;
+}
+
+.passage button {
+    width: 70px;
+    margin-top: 20px;
+    background-color: lightgreen;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 7px;
+    color: black;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.passage button:hover {
+    background-color: rgb(126, 206, 126);
+}
+
+.var {
+    display: flex;
+    width: 500px;
+}
+
+h3 {
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+.key {
+    width: 150px;
+    font-weight: 700;
+}
+
+.val {
+    flex-grow: 1;
+}
+
+.var p {
+    border: 1px black solid;
+    text-align: center;
+}
+
+.passage textarea {
+    width: 500px;
+    min-height: 50px;
+    height: fit-content;
+}
