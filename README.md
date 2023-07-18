@@ -7,8 +7,12 @@ TEST: in the folder `testing` run the script `test.bat` in the cmd prompt. It wi
 ## running example app
 You need `node` and `npm` as well as `npx` the latter two I believe come with `node` when installed. Then in the `js-integration/example` directory run `npm install` and then `npm run dev`. This will start the example app locally on port `3000`. Open `http://localhost:3000/` in your browser.
 # integration with js projects
-To begin, generate the js target files by running `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory. <br>
-- nesting in conditions
-- documentation for antlr, and using this (make a docs file)
+## updating grammar
+The language I defined only supports basic things, not even for loops! If you wish to change it, do the following. <br>
+[1] Go through ANTLR for grammar and language development setup
+[2] run `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory, it will generate many files
+[3] Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
+### TODO
+- documentation for STEAMLabs on how this all works (docs file)
 - add for loops & other macros
 - make it plugin-able
