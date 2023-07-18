@@ -13,6 +13,7 @@ The language I defined only supports basic things, not even for loops! If you wi
 2) Run `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory, it will generate many files
 3) Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
 ### TODO
+- array accesses!!
 - documentation for STEAMLabs on how this all works (docs file)
 - add for loops & other macros
 - make it plugin-able

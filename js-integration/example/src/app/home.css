@@ -13,18 +13,8 @@
     padding: 10px 15px;
 }
 
-.output, .error {
+.output {
     margin-top: 40px;
-}
-
-.error {
-    color: rgba(255, 0, 0, 0.3);
-}
-
-.error p {
-    border: 0.5px rgba(255, 0, 0, 0.3) solid;
-    width: 100%;
-    min-height: 75px;
 }
 
 .passage {
@@ -32,7 +22,7 @@
     flex-direction: column;
 }
 
-.passage button {
+button {
     width: 70px;
     margin-top: 20px;
     background-color: lightgreen;
@@ -76,4 +66,5 @@ h3 {
     width: 500px;
     min-height: 50px;
     height: fit-content;
+    padding: 10px 15px;
 }

@@ -17,7 +17,6 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#stmt.
 	visitStmt(ctx) {
-        console.log(ctx.getText());
 	    var returnMe = this.visitChildren(ctx);
         this.out.push(';\n');
         return returnMe;
@@ -114,7 +113,17 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#expr.
 	visitExpr(ctx) {
-	    return this.visitChildren(ctx);
+	    ctx.children.map((child, i) => {
+            if ('ruleIndex' in child) {
+                if (child.ruleIndex == 11) // condition
+                    this.visitLiteral(child)
+                else if (child.ruleIndex == 8)
+                    this.visitExpr(child) // expression
+            }
+            else {
+                this.out.push(child.getText());
+            }
+        })
 	}
 
 
@@ -205,7 +214,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#text.
 	visitText(ctx) {
-        this.out.push(`passage.cleanText += "${ctx.getText()}"`);
+        this.out.push(`passage.cleanText += "${ctx.getText().trim()}"`);
 	    return this.visitChildren(ctx);
 	}
 

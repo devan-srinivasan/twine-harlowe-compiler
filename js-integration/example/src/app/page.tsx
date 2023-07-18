@@ -1,8 +1,7 @@
 'use client'
-// import Image from 'next/image'
-// import styles from './page.module.css'
+
 import './home.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import antlr4 from 'antlr4';
 import twine_harloweLexer from '../antlr-files/twine_harloweLexer';
 import twine_harloweParser from '../antlr-files/twine_harloweParser';
@@ -11,12 +10,13 @@ import customTwineHarloweVisitor from '../antlr-files/customVisitor';
 const { CommonTokenStream, InputStream } = antlr4;
 
 export default function Home() {
-  const [vars, setVars] = useState({'var1': '1'});
+  const [vars, setVars] = useState({});
   const [text, setText] = useState("");
-  const [out, setOut] = useState("");
+  const [js, setJs] = useState("");
+  const [passage, setPassage] = useState({text: "", links: [], cleanText: ""})
 
   const parse = () => {
-    var chars = new InputStream(text, true)   
+    var chars = new InputStream(text, true);  
     var lexer = new twine_harloweLexer(chars);
     var tokens  = new CommonTokenStream(lexer);
     var parser = new twine_harloweParser(tokens);
@@ -25,7 +25,10 @@ export default function Home() {
     var code = [];
     var visitor = new customTwineHarloweVisitor(code);
     visitor.visitPassage(tree); // start recursion
-    setOut(code.join(' '));
+    var jscode = code.join('');
+    setJs(jscode);
+    console.log(jscode);
+    eval(jscode);
   }
 
   return (
@@ -38,11 +41,12 @@ export default function Home() {
         </div>
         <div className="output">
           <h3>Javascript</h3>
-          <pre>{out}</pre>
+          <pre>{js}</pre>
         </div>
-        <div className="error">
-          <h3>Errors</h3>
-          <p></p>
+        <div className="passage-display">
+          <h3>Passage</h3>
+          <p>{passage.cleanText}</p>
+          <button onClick={()=>{setPassage({text: "", links: [], cleanText: ""})}}>reset</button>
         </div>
       </div>
       <div className="runtime">
