@@ -13,6 +13,7 @@ elseblock : LPAR ELSE RPAR WS* LBRACK stmt* RBRACK;
 set : LPAR SET WS* variable WS+ TO WS+ value WS* RPAR;
 
 condition : condition WS* (AND | OR) WS* condition
+            | LPAR  WS* condition  WS* RPAR
             | expr WS* (IS | GT | LT | GE | LE) WS* expr 
             ;
 
