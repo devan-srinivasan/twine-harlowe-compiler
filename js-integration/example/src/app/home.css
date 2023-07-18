@@ -5,11 +5,11 @@
     gap: 40px;
 }
 
-.output div {
+.output pre {
     border: 1px rgba(0, 0, 0, 0.63) solid;
     width: 100%;
     min-height: 100px;
-    white-space: pre-line;
+    white-space: pre-wrap;
     padding: 10px 15px;
 }
 

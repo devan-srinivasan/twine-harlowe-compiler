@@ -38,7 +38,7 @@ export default function Home() {
         </div>
         <div className="output">
           <h3>Javascript</h3>
-          <div>{out}</div>
+          <pre>{out}</pre>
         </div>
         <div className="error">
           <h3>Errors</h3>

@@ -1,6 +1,8 @@
 import antlr4 from 'antlr4';
 import twine_harloweVisitor from '../antlr-files/twine_harloweVisitor';
 
+const tab = (x) => '\t'.repeat(x);
+
 export default class customTwineHarloweVisitor extends twine_harloweVisitor {
     constructor(out) {
         super();
@@ -9,13 +11,16 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
     // Visit a parse tree produced by twine_harloweParser#passage.
 	visitPassage(ctx) {
-	    return this.visitChildren(ctx);
+	    return this.visitChildren(ctx, 0);
 	}
 
 
 	// Visit a parse tree produced by twine_harloweParser#stmt.
 	visitStmt(ctx) {
-	    return this.visitChildren(ctx);
+        console.log(ctx.getText());
+	    var returnMe = this.visitChildren(ctx);
+        this.out.push(';\n');
+        return returnMe;
 	}
 
 
@@ -27,19 +32,50 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#ifblock.
 	visitIfblock(ctx) {
-	    return this.visitChildren(ctx);
+        this.out.push('if (')
+	    ctx.children.map((child, i) => {
+            if ('ruleIndex' in child && child.ruleIndex == 7) {
+                // condition
+                this.visitCondition(child);
+                this.out.push(') {\n');
+            } 
+            if ('ruleIndex' in child && child.ruleIndex == 1) {
+                // statment (and possibly more to follow)
+                this.visitStmt(child);
+            }
+        })
+        this.out.push('}')
 	}
 
 
 	// Visit a parse tree produced by twine_harloweParser#elseifblock.
 	visitElseifblock(ctx) {
-	    return this.visitChildren(ctx);
+	    this.out.push('else if (')
+	    ctx.children.map((child, i) => {
+            if ('ruleIndex' in child && child.ruleIndex == 7) {
+                // condition
+                this.visitCondition(child);
+                this.out.push(') {\n');
+            } 
+            if ('ruleIndex' in child && child.ruleIndex == 1) {
+                // statment (and possibly more to follow)
+                this.visitStmt(child);
+            }
+        })
+        this.out.push('}')
 	}
 
 
 	// Visit a parse tree produced by twine_harloweParser#elseblock.
 	visitElseblock(ctx) {
-	    return this.visitChildren(ctx);
+	    this.out.push('else {\n')
+	    ctx.children.map((child, i) => { 
+            if ('ruleIndex' in child && child.ruleIndex == 1) {
+                // statment (and possibly more to follow)
+                this.visitStmt(child);
+            }
+        })
+        this.out.push('}')
 	}
 
 
@@ -61,18 +97,17 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#condition.
 	visitCondition(ctx) {
-        for (let i = 0; i < ctx.children.length; i++) {
-            console.log(i, ctx.children[i]);
-            if (i == 0 || i == ctx.children.length - 1) {
-                if (ctx.children[i].ruleIndex == 7)
-                    this.visitCondition(ctx.children[i])
-                else if (ctx.children[i].ruleIndex == 87)
-                    this.visitExpr(ctx.children[i])
+        ctx.children.map((child, i) => {
+            if ('ruleIndex' in child) {
+                if (child.ruleIndex == 7) // condition
+                    this.visitCondition(child)
+                else if (child.ruleIndex == 8)
+                    this.visitExpr(child) // expression
             }
-            else if (i > 0 && i < ctx.children.length - 1) {
-                this.out.push(ctx.children[i].getText());
+            else {
+                this.out.push(child.getText().replace('is', '=='));
             }
-        }
+        })
 	    // return this.visitChildren(ctx);
 	}
 
@@ -92,14 +127,14 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 	// Visit a parse tree produced by twine_harloweParser#array.
 	visitArray(ctx) {
         this.out.push('{');
-        var flag = 0;
+        var firstElementFound = 0;
         for (let child of ctx.children) {
             if ('ruleIndex' in child) {
-                if (child['ruleIndex'] == 8) {
-                    if (flag)
+                if (child['ruleIndex'] == 8) { // expression
+                    if (firstElementFound)
                         this.out.push(',');
                     this.visitExpr(child)
-                    flag = 1;
+                    firstElementFound = 1;
                 }
             }
         }
@@ -150,13 +185,13 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#link.
 	visitLink(ctx) {
-        var flag = 0;
-        var alias = "";
+        var aliasFound = 0;
+        var alias = "";  // link name i.e. [[alias->link]]
         var link = "";
         for (let child of ctx.children) {
             if ('ruleIndex' in child) {
-                if (!flag) {
-                    flag = 1;
+                if (!aliasFound) {
+                    aliasFound = 1;
                     alias = child.getText();
                     link = alias;
                 } else {
@@ -164,13 +199,13 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
                 }
             }
         }
-        this.out.push(`\npassage.links.push({"name": "${alias}", "linkText": "${link}", text: "${ctx.getText()}"})`)
+        this.out.push(`passage.links.push({"name": "${alias}", "linkText": "${link}", text: "${ctx.getText()}"})`)
 	}
 
 
 	// Visit a parse tree produced by twine_harloweParser#text.
 	visitText(ctx) {
-        this.out.push(ctx.getText());
+        this.out.push(`passage.cleanText += "${ctx.getText()}"`);
 	    return this.visitChildren(ctx);
 	}
 
