@@ -9,9 +9,9 @@ You need `node` and `npm` as well as `npx` the latter two I believe come with `n
 # integration with js projects
 ## updating grammar
 The language I defined only supports basic things, not even for loops! If you wish to change it, do the following. <br>
-[1] Go through ANTLR for grammar and language development setup
-[2] run `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory, it will generate many files
-[3] Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
+1) Go through ANTLR for grammar and language development setup
+2) Run `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory, it will generate many files
+3) Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
 ### TODO
 - documentation for STEAMLabs on how this all works (docs file)
 - add for loops & other macros
