@@ -29,6 +29,7 @@ export default function Home() {
     setJs(jscode);
     console.log(jscode);
     eval(jscode);
+    setPassage({...passage});
   }
 
   return (
@@ -56,7 +57,14 @@ export default function Home() {
             Object.keys(vars).map(key => 
               <div key={key} className="var">
                 <p className='key'>{key}</p>
-                <p className='val'>{vars[key as keyof object]}</p>
+                <p className='val'>{
+                  (
+                    Array.isArray(vars[key as keyof object]) ? 
+                      vars[key as keyof object].join(', ')
+                    :
+                      vars[key as keyof object])
+                }
+                </p>
               </div>
             )
           }

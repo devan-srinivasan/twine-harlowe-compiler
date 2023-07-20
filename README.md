@@ -13,8 +13,12 @@ The language I defined only supports basic things, not even for loops! If you wi
 2) Run `antlr -Dlanguage=JavaScript -visitor twine_harlowe.g4` from the `antlr-stuff` directory, it will generate many files
 3) Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
 ### TODO
-- array accesses!!
-- sort out newline characters and stuff like that
+- add in more punctuation ! and ?
+- sort out newline characters and stuff like that...is there a better way to do this, talk to Andy
 - documentation for STEAMLabs on how this all works (docs file)
+- array accesses, although there are a lot of integrations needed for this
 - add for loops & other macros
 - make it plugin-able
+# NOTES
+1) no brackets in the plain text, reserved for harlowe code :(
+2) double quotes for strings

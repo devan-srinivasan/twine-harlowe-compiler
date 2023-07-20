@@ -22,6 +22,10 @@
     flex-direction: column;
 }
 
+.passage-display p{
+    white-space: pre-wrap;
+}
+
 button {
     width: 70px;
     margin-top: 20px;
@@ -60,6 +64,7 @@ h3 {
 .var p {
     border: 1px black solid;
     text-align: center;
+    padding: 5px 0;
 }
 
 .passage textarea {

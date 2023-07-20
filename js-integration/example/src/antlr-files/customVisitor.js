@@ -17,6 +17,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#stmt.
 	visitStmt(ctx) {
+        console.log(ctx, ctx.getText());
 	    var returnMe = this.visitChildren(ctx);
         this.out.push(';\n');
         return returnMe;
@@ -104,7 +105,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
                     this.visitExpr(child) // expression
             }
             else {
-                this.out.push(child.getText().replace('is', '=='));
+                this.out.push(child.getText().replace('is', '==').replace('and', '&&').replace('or', '||'));
             }
         })
 	    // return this.visitChildren(ctx);
@@ -135,7 +136,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#array.
 	visitArray(ctx) {
-        this.out.push('{');
+        this.out.push('[');
         var firstElementFound = 0;
         for (let child of ctx.children) {
             if ('ruleIndex' in child) {
@@ -147,7 +148,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
                 }
             }
         }
-        this.out.push('}');
+        this.out.push(']');
 	    // return this.visitChildren(ctx);
 	}
 
@@ -214,8 +215,23 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#text.
 	visitText(ctx) {
-        this.out.push(`passage.cleanText += "${ctx.getText().trim()}"`);
+        console.log(ctx.getText().replace('\n', ));
+        // need to trim the start of all lines and the end except newline char
+        this.out.push(`passage.cleanText += \`${trimText(ctx.getText())}\``);
 	    return this.visitChildren(ctx);
 	}
 
+}
+
+function trimText(text) {
+    text = text.trimStart();
+    console.log(text, "length: ", text.length);
+    var endOfTextSplice = text.length;
+    for (let i = text.length - 1; i >= 0; i--) {
+        if (!/\s/.test(text[i])) {
+            endOfTextSplice = i + 2;
+            break;
+        }
+    }
+    return text.slice(0, endOfTextSplice);
 }
