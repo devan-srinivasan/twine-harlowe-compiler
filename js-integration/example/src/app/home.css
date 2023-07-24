@@ -26,6 +26,10 @@
     white-space: pre-wrap;
 }
 
+.passage-display, .output {
+    max-width: 700px;
+}
+
 button {
     width: 70px;
     margin-top: 20px;
@@ -53,7 +57,7 @@ h3 {
 }
 
 .key {
-    width: 150px;
+    width: 200px;
     font-weight: 700;
 }
 
@@ -69,7 +73,7 @@ h3 {
 
 .passage textarea {
     width: 500px;
-    min-height: 50px;
+    min-height: 200px;
     height: fit-content;
     padding: 10px 15px;
 }

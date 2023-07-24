@@ -1,11 +1,12 @@
 'use client'
 
-import './home.css'
-import { useEffect, useState } from "react"
+import './home.css';
+import { useEffect, useState } from "react";
 import antlr4 from 'antlr4';
 import twine_harloweLexer from '../antlr-files/twine_harloweLexer';
 import twine_harloweParser from '../antlr-files/twine_harloweParser';
 import customTwineHarloweVisitor from '../antlr-files/customVisitor';
+
 
 const { CommonTokenStream, InputStream } = antlr4;
 
@@ -28,12 +29,15 @@ export default function Home() {
     var jscode = code.join('');
     setJs(jscode);
     console.log(jscode);
-    eval(jscode);
+    // eval(jscode);
+    var interpreter = new Interpreter('var a = 2;');
+    // interpreter.run();
     setPassage({...passage});
   }
 
   return (
     <div className="container">
+      <script src="acorn_interpreter.js"></script>
       <div className="passage-wrapper">
         <div className="passage">
           <h3>Enter Passage</h3>
@@ -47,7 +51,7 @@ export default function Home() {
         <div className="passage-display">
           <h3>Passage</h3>
           <p>{passage.cleanText}</p>
-          <button onClick={()=>{setPassage({text: "", links: [], cleanText: ""})}}>reset</button>
+          <button onClick={()=>{setPassage({text: "", links: [], cleanText: ""}); setJs("");}}>clear</button>
         </div>
       </div>
       <div className="runtime">
@@ -69,6 +73,7 @@ export default function Home() {
             )
           }
         </div>
+        <button onClick={()=>{setVars({})}}>reset</button>
       </div>
     </div>
   )
