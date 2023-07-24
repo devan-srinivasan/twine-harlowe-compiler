@@ -14,7 +14,7 @@ The language I defined only supports basic things, not even for loops! If you wi
 3) Copy over the Lexer, Parser, Listener, and Visitor files to the `antlr-files` directory and modify customListener / customVisitor accordingly with you're new language.
 ### TODO
 - add in more punctuation ! and ?
-- sort out newline characters and stuff like that...is there a better way to do this, talk to Andy
+- sort out newline characters and stuff like that...is there a better way to do this, talk to Andy?
 - documentation for STEAMLabs on how this all works (docs file)
 - array accesses, although there are a lot of integrations needed for this
 - add for loops & other macros

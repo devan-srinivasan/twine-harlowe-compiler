@@ -225,7 +225,6 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 function trimText(text) {
     text = text.trimStart();
-    console.log(text, "length: ", text.length);
     var endOfTextSplice = text.length;
     for (let i = text.length - 1; i >= 0; i--) {
         if (!/\s/.test(text[i])) {
