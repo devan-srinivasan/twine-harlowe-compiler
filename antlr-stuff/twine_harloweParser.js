@@ -34,8 +34,8 @@ const serializedATN = [4,1,31,380,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,
 5,16,357,8,16,10,16,12,16,360,9,16,1,16,1,16,1,17,1,17,1,17,1,17,1,17,3,
 17,369,8,17,1,17,1,17,1,17,1,17,1,18,4,18,376,8,18,11,18,12,18,377,1,18,
 0,2,14,16,19,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,0,6,1,0,
-18,22,1,0,16,17,1,0,23,26,2,0,6,6,29,30,1,0,5,5,6,0,5,9,14,14,16,17,22,22,
-25,26,28,31,415,0,39,1,0,0,0,2,48,1,0,0,0,4,50,1,0,0,0,6,72,1,0,0,0,8,103,
+18,22,1,0,16,17,1,0,23,26,2,0,6,6,29,30,1,0,5,5,6,0,3,9,14,14,16,17,22,22,
+24,26,28,31,415,0,39,1,0,0,0,2,48,1,0,0,0,4,50,1,0,0,0,6,72,1,0,0,0,8,103,
 1,0,0,0,10,134,1,0,0,0,12,152,1,0,0,0,14,214,1,0,0,0,16,254,1,0,0,0,18,278,
 1,0,0,0,20,280,1,0,0,0,22,319,1,0,0,0,24,321,1,0,0,0,26,329,1,0,0,0,28,332,
 1,0,0,0,30,347,1,0,0,0,32,354,1,0,0,0,34,363,1,0,0,0,36,375,1,0,0,0,38,40,
@@ -211,7 +211,7 @@ export default class twine_harloweParser extends antlr4.Parser {
 	            this.state = 41; 
 	            this._errHandler.sync(this);
 	            _la = this._input.LA(1);
-	        } while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4131603434) !== 0));
+	        } while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4148380666) !== 0));
 	    } catch (re) {
 	    	if(re instanceof antlr4.error.RecognitionException) {
 		        localctx.exception = re;
@@ -402,7 +402,7 @@ export default class twine_harloweParser extends antlr4.Parser {
 	        this.state = 98;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4131603434) !== 0)) {
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4148380666) !== 0)) {
 	            this.state = 95;
 	            this.stmt();
 	            this.state = 100;
@@ -476,7 +476,7 @@ export default class twine_harloweParser extends antlr4.Parser {
 	        this.state = 129;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4131603434) !== 0)) {
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4148380666) !== 0)) {
 	            this.state = 126;
 	            this.stmt();
 	            this.state = 131;
@@ -528,7 +528,7 @@ export default class twine_harloweParser extends antlr4.Parser {
 	        this.state = 147;
 	        this._errHandler.sync(this);
 	        _la = this._input.LA(1);
-	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4131603434) !== 0)) {
+	        while((((_la) & ~0x1f) === 0 && ((1 << _la) & 4148380666) !== 0)) {
 	            this.state = 144;
 	            this.stmt();
 	            this.state = 149;
@@ -1355,7 +1355,7 @@ export default class twine_harloweParser extends antlr4.Parser {
 	        	case 1:
 	        		this.state = 374;
 	        		_la = this._input.LA(1);
-	        		if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 4131603424) !== 0))) {
+	        		if(!((((_la) & ~0x1f) === 0 && ((1 << _la) & 4148380664) !== 0))) {
 	        		this._errHandler.recoverInline(this);
 	        		}
 	        		else {
@@ -2750,6 +2750,30 @@ class TextContext extends antlr4.ParserRuleContext {
 	};
 
 
+	LPAR = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(twine_harloweParser.LPAR);
+	    } else {
+	        return this.getToken(twine_harloweParser.LPAR, i);
+	    }
+	};
+
+
+	RPAR = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(twine_harloweParser.RPAR);
+	    } else {
+	        return this.getToken(twine_harloweParser.RPAR, i);
+	    }
+	};
+
+
 	DOT = function(i) {
 		if(i===undefined) {
 			i = null;
@@ -2794,6 +2818,18 @@ class TextContext extends antlr4.ParserRuleContext {
 	        return this.getTokens(twine_harloweParser.TO);
 	    } else {
 	        return this.getToken(twine_harloweParser.TO, i);
+	    }
+	};
+
+
+	MINUS = function(i) {
+		if(i===undefined) {
+			i = null;
+		}
+	    if(i===null) {
+	        return this.getTokens(twine_harloweParser.MINUS);
+	    } else {
+	        return this.getToken(twine_harloweParser.MINUS, i);
 	    }
 	};
 

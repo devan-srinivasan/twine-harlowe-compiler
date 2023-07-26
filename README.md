@@ -115,7 +115,7 @@ See the `js-integration/example` app. Essentially, we use the `antlr` generated 
 # restrictions with this tool
 (that I know of)
 1) **Restriction**: For any plain text that should be rendered in the passage, the following is disallowed:
- `[` `]` `(` `)` `"`, or in words, brackets and quotations. However, curly braces `{ }` are ok.
+ `[` `]`, or in words, brackets and quotations. However, curly braces `{ }` and parenthesis are ok.
 
 2) **Restriction**: when defining strings, you must use double quotes
 
