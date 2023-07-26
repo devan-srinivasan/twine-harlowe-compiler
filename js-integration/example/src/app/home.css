@@ -3,18 +3,20 @@
     margin: 50px auto;
     display: flex;
     gap: 40px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.output pre {
+h1:nth-of-type(2) {
+    margin-top: 22px;
+}
+
+.output pre, .passage-display p {
     border: 1px rgba(0, 0, 0, 0.63) solid;
     width: 100%;
     min-height: 100px;
     white-space: pre-wrap;
     padding: 10px 15px;
-}
-
-.output {
-    margin-top: 40px;
+    font-size: 12px;
 }
 
 .passage {
@@ -30,6 +32,14 @@
     max-width: 700px;
 }
 
+.runtime {
+    margin-top: 35px;
+}
+
+.variables {
+    margin-top: 15px;
+}
+
 button {
     width: 70px;
     margin-top: 20px;
@@ -42,7 +52,7 @@ button {
     font-size: 12px;
 }
 
-.passage button:hover {
+button:hover {
     background-color: rgb(126, 206, 126);
 }
 
@@ -69,6 +79,30 @@ h3 {
     border: 1px black solid;
     text-align: center;
     padding: 5px 0;
+    font-size: 16px;
+}
+.new {
+    width: 545px;
+    display: flex;
+}
+
+.new input {
+    background: #efefef;
+    color: black;
+    padding: 5px;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+}
+
+.new .key {
+    font-weight: 700;
+}
+
+.new button {
+    width: 40px;
+    height: fit-content;
+    margin: auto 0 auto 5px;
 }
 
 .passage textarea {
@@ -76,4 +110,13 @@ h3 {
     min-height: 200px;
     height: fit-content;
     padding: 10px 15px;
+}
+
+.link {
+    font-size: 12px;
+    border: 1px solid black;
+    width: 200px;
+    height: fit-content;
+    padding: 5px 0;
+    text-align: center;
 }
