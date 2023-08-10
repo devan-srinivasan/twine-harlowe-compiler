@@ -96,11 +96,7 @@ See the `js-integration/example` app. Essentially, we use the `antlr` generated 
 
   
 
-- rename the repo to transpiler
-
-- sort out newline characters -- DONE -- is there a better way to do this, talk to Andy?
-
-- documentation for STEAMLabs on how this all works (docs file)
+- not for conditions
 
 - array accesses, although there is a lot of work needed for this
 
