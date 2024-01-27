@@ -169,6 +169,7 @@ export default class customTwineHarloweVisitor extends twine_harloweVisitor {
 
 	// Visit a parse tree produced by twine_harloweParser#variable.
 	visitVariable(ctx) {
+        console.log("var")
         this.out.push(ctx.getText().replace('$', 'vars.'))
 	    return this.visitChildren(ctx);
 	}

@@ -115,4 +115,6 @@ See the `js-integration/example` app. Essentially, we use the `antlr` generated 
 
 2) **Restriction**: when defining strings, you must use double quotes
 
-3) *Warning*: When writing your passage text any and all whitespace will included. so you can indent any thing you like but if you indent text (i.e. not Harlowe code) then it will also be indented when displayed in the passage window.
+3) **Restriction**: there is a bug with variable references
+
+4) *Warning*: When writing your passage text any and all whitespace will included. so you can indent any thing you like but if you indent text (i.e. not Harlowe code) then it will also be indented when displayed in the passage window.

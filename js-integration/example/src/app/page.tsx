@@ -81,62 +81,66 @@ export default function Home() {
   }
 
   return (
-    <div className="container">
-      <div className="passage-wrapper">
-        <h1>Input</h1>
-        <div className="passage">
-          <h3>Enter Passage</h3>
-          <textarea onChange={(e) => {setText(e.target.value)}}></textarea>
-          <button onClick={parse}>transpile</button>
-        </div>
-        <h1>Output</h1>
-        <div className="output">
-          <h3>Javascript</h3>
-          <pre>{js}</pre>
-        </div>
-        <div className="passage-display">
-          <div>
-            <h3>Passage</h3>
-            <p>{passage.cleanText}</p>
+
+    <>
+      <h1 className='title'>Twine Harlowe Transpiler</h1>
+      <div className="container">
+        <div className="passage-wrapper">
+          <h1>Input</h1>
+          <div className="passage">
+            <h3>Enter Passage</h3>
+            <textarea onChange={(e) => {setText(e.target.value)}}></textarea>
+            <button onClick={parse}>transpile</button>
           </div>
-          <div>
-            <h3>Links</h3>
+          <h1>Output</h1>
+          <div className="output">
+            <h3>Javascript</h3>
+            <pre>{js}</pre>
+          </div>
+          <div className="passage-display">
+            <div>
+              <h3>Passage</h3>
+              <p>{passage.cleanText}</p>
+            </div>
+            <div>
+              <h3>Links</h3>
+              {
+                passage.links.map((element, index) => {
+                  return <div key={index} className='link'>{element.name + ' -> ' + element.linkText}</div>
+                })
+              }
+            </div>
+          </div>
+          <button onClick={()=>{setPassage({text: "", links: [], cleanText: ""}); setJs("");}}>clear</button>
+        </div>
+        <div className="runtime">
+          <h3>Runtime Variables</h3>
+          <p>Any variables you set on the left or add below will be tracked here</p>
+          <div className="variables">
             {
-              passage.links.map((element, index) => {
-                return <div key={index} className='link'>{element.name + ' -> ' + element.linkText}</div>
-              })
+              Object.keys(vars).map(key => 
+                <div key={key} className="var">
+                  <p className='key'>{key}</p>
+                  <p className='val'>{
+                    (
+                      Array.isArray(vars[key as keyof object]) ? 
+                        vars[key as keyof object].join(', ')
+                      :
+                        vars[key as keyof object])
+                  }
+                  </p>
+                </div>
+              )
             }
+            <div className="var new">
+                <input id='key_new' className='key' placeholder="name"/>
+                <input id='val_new' className='val' placeholder="value"/>
+                <button type="submit" onClick={addNewVar}>add</button>
+            </div>
           </div>
+          <button onClick={()=>{setVars({})}}>reset</button>
         </div>
-        <button onClick={()=>{setPassage({text: "", links: [], cleanText: ""}); setJs("");}}>clear</button>
       </div>
-      <div className="runtime">
-        <h3>Runtime Variables</h3>
-        <p>Any variables you set on the left or add below will be tracked here</p>
-        <div className="variables">
-          {
-            Object.keys(vars).map(key => 
-              <div key={key} className="var">
-                <p className='key'>{key}</p>
-                <p className='val'>{
-                  (
-                    Array.isArray(vars[key as keyof object]) ? 
-                      vars[key as keyof object].join(', ')
-                    :
-                      vars[key as keyof object])
-                }
-                </p>
-              </div>
-            )
-          }
-          <div className="var new">
-              <input id='key_new' className='key' placeholder="name"/>
-              <input id='val_new' className='val' placeholder="value"/>
-              <button type="submit" onClick={addNewVar}>add</button>
-          </div>
-        </div>
-        <button onClick={()=>{setVars({})}}>reset</button>
-      </div>
-    </div>
+    </>
   )
 }
