@@ -7,7 +7,7 @@
 
 This project is a minimal compiler for Harlowe 3.3.6 and Twine with the integration example in Javascript to support cross-story runtime environments. This was done for a specific project I worked on, but the learning process and development was difficult and incredibly fun for me so I decided to make this it's own repo. It was designed for the purpose of having variables persist beyond one story alone, and having that compilation and runtime environment exist on the client's side. In the example nextjs app I have you can see that as each passage is processed from json, the passage is cleaned, the runtime is updated (and displayed), and the json objects are updated.
 
-  
+<img src="./js-integration/example/demopics/main.png"></img>
 
 # setup
 
@@ -116,5 +116,3 @@ See the `js-integration/example` app. Essentially, we use the `antlr` generated 
 2) **Restriction**: when defining strings, you must use double quotes
 
 3) **Restriction**: there is a bug with variable references
-
-4) *Warning*: When writing your passage text any and all whitespace will included. so you can indent any thing you like but if you indent text (i.e. not Harlowe code) then it will also be indented when displayed in the passage window.
